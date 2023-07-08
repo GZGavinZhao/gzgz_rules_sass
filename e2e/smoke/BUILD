@@ -4,13 +4,12 @@ Add a basic smoke-test target below.
 
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
 
-# Replace with a usage of your rule/macro
-filegroup(name = "empty")
-
 build_test(
     name = "smoke_test",
     targets = [
-        # targets you add above
-        ":empty",
+        "//nested:nested",
+        "//demo:demo",
+        "//imports_css:imports_css",
+        "//hello_world:hello_world",
     ],
 )
