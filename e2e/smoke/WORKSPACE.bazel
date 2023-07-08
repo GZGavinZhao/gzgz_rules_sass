@@ -14,6 +14,7 @@ local_repository(
 # you should fetch it *before* calling this.
 # Alternatively, you can skip calling this function, so long as you've
 # already fetched all the dependencies.
-load("@gzgz_rules_sass//sass:repositories.bzl", "rules_sass_dependencies")
+load("@gzgz_rules_sass//sass:repositories.bzl", "rules_sass_dependencies", "sass_register_toolchains")
 
 rules_sass_dependencies()
+sass_register_toolchains(name = "dart_sass", sass_version = "1.63.6")
