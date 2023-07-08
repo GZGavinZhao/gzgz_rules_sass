@@ -7,7 +7,7 @@ load("//sass/private:versions.bzl", "SASS_VERSIONS")
 
 def _smoke_test_impl(ctx):
     env = unittest.begin(ctx)
-    asserts.equals(env, "1.14.2", SASS_VERSIONS.keys()[0])
+    asserts.equals(env, "1.63.6", SASS_VERSIONS.keys()[0])
     return unittest.end(env)
 
 # The unittest library requires that we export the test cases as named test rules,

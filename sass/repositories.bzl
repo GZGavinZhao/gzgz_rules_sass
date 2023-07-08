@@ -45,10 +45,8 @@ def _sass_repo_impl(repository_ctx):
 
     # This Sass version doesn't provide the given platform.
     if SASS_VERSIONS[sass_version].get(platform) == None:
-        print("Ahhhhh")
         return
 
-    print("Thankfully!")
     url = "https://github.com/sass/dart-sass/releases/download/{0}/dart-sass-{0}-{1}.{2}".format(
         sass_version,
         PLATFORM_NAMES[platform],

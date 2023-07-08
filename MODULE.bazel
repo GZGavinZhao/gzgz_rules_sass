@@ -15,7 +15,7 @@ bazel_dep(name = "aspect_bazel_lib", version = "1.32.1", dev_dependency = True)
 bazel_dep(name = "buildifier_prebuilt", version = "6.1.0", dev_dependency = True)
 
 sass = use_extension("//sass:extensions.bzl", "sass")
-sass.toolchain(sass_version = "1.14.2")
+sass.toolchain(sass_version = "1.63.6")
 use_repo(sass, "sass_toolchains")
 
 register_toolchains("@sass_toolchains//:all")
