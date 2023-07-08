@@ -1,6 +1,6 @@
 <!-- Generated with Stardoc: http://skydoc.bazel.build -->
 
-
+Compile Sass files to CSS
 
 <a id="multi_sass_binary"></a>
 
