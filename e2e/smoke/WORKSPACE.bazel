@@ -17,4 +17,8 @@ local_repository(
 load("@gzgz_rules_sass//sass:repositories.bzl", "rules_sass_dependencies", "sass_register_toolchains")
 
 rules_sass_dependencies()
-sass_register_toolchains(name = "dart_sass", sass_version = "1.63.6")
+
+sass_register_toolchains(
+    name = "dart_sass",
+    sass_version = "1.63.6",
+)

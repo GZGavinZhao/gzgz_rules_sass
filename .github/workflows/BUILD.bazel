@@ -5,4 +5,8 @@ buildifier(
     exclude_patterns = ["./.git/*"],
     lint_mode = "warn",
     mode = "diff",
+    target_compatible_with = [
+        "@platforms//cpu:x86_64",
+        "@platforms//os:linux",
+    ],
 )

@@ -16,7 +16,7 @@ sass_toolchain = rule(
             mandatory = False,
             executable = True,
             allow_single_file = True,
-            cfg = "host",
+            cfg = "exec",
         ),
     },
     doc = """Defines a sass compiler/runtime toolchain.

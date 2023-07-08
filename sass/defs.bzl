@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"Compile Sass files to CSS"
 
 _ALLOWED_SRC_FILE_EXTENSIONS = [".sass", ".scss", ".css", ".svg", ".png", ".gif", ".cur", ".jpg", ".webp"]
 
@@ -169,8 +170,6 @@ sass_library = rule(
     implementation = _sass_library_impl,
     attrs = _sass_library_attrs,
 )
-"""Defines a group of Sass include files.
-"""
 
 _sass_binary_attrs = {
     "src": attr.label(

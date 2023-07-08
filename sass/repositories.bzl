@@ -44,6 +44,7 @@ def _sass_repo_impl(repository_ctx):
     platform = repository_ctx.attr.platform
 
     if SASS_VERSIONS.get(sass_version) == None:
+        # buildifier: disable=print
         print("WARNING: content integrity for Dart Sass version " + sass_version + " cannot be checked. Consider manually specifying checksums or switch versions.")
     elif SASS_VERSIONS[sass_version].get(platform) == None:
         # This Sass version doesn't provide the given platform.
