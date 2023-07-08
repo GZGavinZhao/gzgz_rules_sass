@@ -218,21 +218,22 @@ sass_binary = rule(
     implementation = _sass_binary_impl,
     attrs = _sass_binary_attrs,
     outputs = _sass_binary_outputs,
-    toolchains = ["//sass:toolchain_type"]
+    toolchains = ["//sass:toolchain_type"],
 )
 
 def _multi_sass_binary_impl(ctx):
     """multi_sass_binary accepts a list of sources and compile all in one pass.
-    
+
     Args:
         ctx: The Bazel build context
-    
+
     Returns:
         The multi_sass_binary rule.
     """
-    
+
     inputs = ctx.files.srcs
     outputs = []
+
     # Every non-partial Sass file will produce one CSS output file and,
     # optionally, one sourcemap file.
     for f in inputs:
@@ -250,28 +251,28 @@ def _multi_sass_binary_impl(ctx):
                 name + ".css.map",
                 sibling = f,
             ))
-    
+
     # Use the package directory as the compilation root given to the Sass compiler
     root_dir = (ctx.label.workspace_root + "/" if ctx.label.workspace_root else "") + ctx.label.package
-    
+
     # Declare arguments passed through to the Sass compiler.
     # Start with flags and then expected program arguments.
     args = ctx.actions.args()
     args.add("--style", ctx.attr.output_style)
     args.add("--load-path", root_dir)
-    
+
     if not ctx.attr.sourcemap:
         args.add("--no-source-map")
-    
-    args.add(root_dir + ":" + ctx.bin_dir.path + '/' + root_dir)
+
+    args.add(root_dir + ":" + ctx.bin_dir.path + "/" + root_dir)
 
     # TODO: not yet doable. See the comment in _run_sass.
     # args.use_param_file("@%s", use_always = True)
     # args.set_param_file_format("multiline")
-    
+
     toolchain = ctx.toolchains["//sass:toolchain_type"]
     sass = toolchain.sass
-    
+
     if inputs:
         ctx.actions.run(
             inputs = inputs,
@@ -282,7 +283,7 @@ def _multi_sass_binary_impl(ctx):
             progress_message = "Compiling multi Sass target %{label}",
             toolchain = "//sass:toolchain_type",
         )
-    
+
     return [DefaultInfo(files = depset(outputs))]
 
 multi_sass_binary = rule(
@@ -307,5 +308,5 @@ multi_sass_binary = rule(
             ],
         ),
     },
-    toolchains = ["//sass:toolchain_type"]
+    toolchains = ["//sass:toolchain_type"],
 )
