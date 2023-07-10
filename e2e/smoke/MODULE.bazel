@@ -7,7 +7,10 @@ local_path_override(
 )
 
 sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
-sass.toolchain(name = "dart_sass", sass_version = "1.50.0")
+sass.toolchain(
+    name = "dart_sass",
+    sass_version = "1.50.0",
+)
 use_repo(sass, "dart_sass_toolchains")
 
 register_toolchains("@dart_sass_toolchains//:all")
