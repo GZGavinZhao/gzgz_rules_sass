@@ -12,13 +12,7 @@ bazel_dep(name = "platforms", version = "0.0.5")
 bazel_dep(name = "gazelle", version = "0.29.0", dev_dependency = True, repo_name = "bazel_gazelle")
 bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.4.1", dev_dependency = True)
 bazel_dep(name = "aspect_bazel_lib", version = "1.32.1", dev_dependency = True)
-bazel_dep(name = "buildifier_prebuilt", version = "6.1.0", dev_dependency = True)
-git_override(
-    module_name = "buildifier_prebuilt",
-    commit = "659e47341eaa8e7ce6729bf7d1d3c9f0eabeefe2",
-    # path = "../buildifier-prebuilt",
-    remote = "https://github.com/GZGavinZhao/buildifier-prebuilt",
-)
+bazel_dep(name = "buildifier_prebuilt", version = "6.1.2", dev_dependency = True)
 
 sass = use_extension("//sass:extensions.bzl", "sass")
 sass.toolchain(sass_version = "1.63.6")
