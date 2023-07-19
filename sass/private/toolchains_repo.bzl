@@ -38,6 +38,20 @@ PLATFORMS = {
             "@platforms//cpu:x86_64",
         ],
     ),
+    "aarch64-unknown-linux": struct(
+        compatible_with = [
+            "@platforms//os:linux",
+            "@platforms//cpu:aarch64",
+        ],
+    ),
+    "aarch32-unknown-linux": struct(
+        compatible_with = [
+            "@platforms//os:linux",
+            # TODO: switch to `@platforms//cpu:aarch32` once a new version is
+            # published
+            "@platforms//cpu:arm",
+        ],
+    ),
     "i386-unknown-linux": struct(
         compatible_with = [
             "@platforms//os:linux",
@@ -62,6 +76,8 @@ PLATFORM_NAMES = {
     "x86_64-apple-darwin": "macos-x64",
     "aarch64-apple-darwin": "macos-arm64",
     "x86_64-unknown-linux": "linux-x64",
+    "aarch64-unknown-linux": "linux-arm64",
+    "aarch32-unknown-linux": "linux-arm",
     "i386-unknown-linux": "linux-ia32",
     "x86_64-pc-windows": "windows-x64",
     "i386-pc-windows": "windows-ia32",
