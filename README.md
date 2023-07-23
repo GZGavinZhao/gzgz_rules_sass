@@ -1,6 +1,6 @@
 # Bazel rules for sass
 
-This is an alternative Bazel ruleset to compile [Sass](https://sass-lang.org)
+This is an alternative Bazel ruleset to compile [Sass](https://sass-lang.com)
 stylesheets. It has the exact same API as the official
 [`rules_sass`](https://github.com/bazelbuild/rules_sass), but the difference is
 that `gzgz_rules_sass` wraps the [Dart Sass](https://github.com/sass/dart-sass)
