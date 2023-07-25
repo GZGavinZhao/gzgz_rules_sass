@@ -3,7 +3,7 @@
 Installs a sass toolchain.
 Every module can define a toolchain version under the default name, "sass".
 The latest of those versions will be selected (the rest discarded),
-and will always be registered by rules_sass.
+and will always be registered by gzgz_rules_sass.
 
 Additionally, the root module can define arbitrarily many more toolchain versions under different
 names (the latest version will be picked for each name) and can register them as it sees fit,

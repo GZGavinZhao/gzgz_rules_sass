@@ -65,4 +65,4 @@ with open("sass/private/versions.bzl", "w") as output:
 SASS_VERSIONS = ''')
 
 with open("sass/private/versions.bzl", "a") as output:
-    json.dump(res, output)
+    json.dump(res, output, indent=4)

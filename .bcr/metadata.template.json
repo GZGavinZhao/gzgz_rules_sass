@@ -1,7 +1,13 @@
 {
-  "homepage": "https://github.com/GZGavinZhao/rules_sass",
-  "maintainers": [],
-  "repository": ["github:GZGavinZhao/rules_sass"],
+  "homepage": "https://github.com/GZGavinZhao/gzgz_rules_sass",
+    "maintainers": [
+     {
+       "email": "me@gzgz.dev",
+       "github": "GZGavinZhao",
+       "name": "Gavin Zhao"
+     }
+    ],
+  "repository": ["github:GZGavinZhao/gzgz_rules_sass"],
   "versions": [],
   "yanked_versions": {}
 }

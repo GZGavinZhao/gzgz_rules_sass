@@ -13,6 +13,39 @@ taken to make it RBE-compatible, but this is not thoroughly tested.
 
 ## Installation
 
+### bzlmod
+
+```starlark
+bazel_dep(name = "gzgz_rules_sass", version = "1.0.0")
+
+sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
+
+sass.toolchain(sass_version = "1.63.6")
+use_repo(sass, "sass_toolchains")
+
+register_toolchains("@sass_toolchains//:all")
+```
+
+By default, the Sass toolchain name is `@sass_toolchains`, so the
+`sass_version` specified becomes the version that is enforced on all
+dependencies that also used the default name.
+
+However, if you'd like to use a specific version **only** in your project,
+then you can explicitly set a name when registering Sass toolchain, which 
+will differentiate it from the default Sass toolchain:
+```starlark
+sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
+sass.toolchain(
+    name = "dart_sass",
+    sass_version = "1.63.6",
+)
+use_repo(sass, "dart_sass_toolchains")
+
+register_toolchains("@dart_sass_toolchains//:all")
+```
+
+### WORKSPACE
+
 From the release you wish to use:
 <https://github.com/GZGavinZhao/gzgz_rules_sass/releases>
 copy the WORKSPACE snippet into your `WORKSPACE` file.

@@ -7,18 +7,18 @@ local_repository(
 #---SNIP--- Below here is re-used in the workspace snippet published on releases
 
 ######################
-# rules_sass setup #
+# gzgz_rules_sass setup #
 ######################
-# Fetches the rules_sass dependencies.
+# Fetches the dependencies for gzgz_rules_sass.
 # If you want to have a different version of some dependency,
 # you should fetch it *before* calling this.
 # Alternatively, you can skip calling this function, so long as you've
 # already fetched all the dependencies.
-load("@gzgz_rules_sass//sass:repositories.bzl", "rules_sass_dependencies", "sass_register_toolchains")
+load("@gzgz_rules_sass//sass:repositories.bzl", "gzgz_rules_sass_dependencies", "sass_register_toolchains")
 
-rules_sass_dependencies()
+gzgz_rules_sass_dependencies()
 
 sass_register_toolchains(
     name = "dart_sass",
-    sass_version = "1.63.6",
+    sass_version = "1.63.6", # Or any other version you like
 )

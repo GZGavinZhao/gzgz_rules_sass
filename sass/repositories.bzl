@@ -19,7 +19,7 @@ def http_archive(name, **kwargs):
 # changes in this function should be marked as BREAKING in the commit message
 # and released only in semver majors.
 # This is all fixed by bzlmod, so we just tolerate it for now.
-def rules_sass_dependencies():
+def gzgz_rules_sass_dependencies():
     # The minimal version of bazel_skylib we require
     http_archive(
         name = "bazel_skylib",
