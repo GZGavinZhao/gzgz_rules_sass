@@ -7,7 +7,6 @@ The integrity hashes can be computed with
 shasum -b -a 384 [downloaded file] | awk '{ print $1 }' | xxd -r -p | base64
 """
 
-
 SASS_VERSIONS = {
     "1.64.1": {
         "aarch32-unknown-linux": "sha384-iMgCFHyRXMFB1OLW2fFiK0WdXdlUjqpREPrqYIRSRJ8IBZ5fLvFeojt3/ElGhRMJ",
