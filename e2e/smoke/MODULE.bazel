@@ -1,5 +1,5 @@
-bazel_dep(name = "gzgz_rules_sass", dev_dependency = True, version = "1.0.0")
-bazel_dep(name = "bazel_skylib", dev_dependency = True, version = "1.3.0")
+bazel_dep(name = "gzgz_rules_sass", version = "1.0.0", dev_dependency = True)
+bazel_dep(name = "bazel_skylib", version = "1.3.0", dev_dependency = True)
 
 local_path_override(
     module_name = "gzgz_rules_sass",
@@ -7,9 +7,7 @@ local_path_override(
 )
 
 sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
-
 sass.toolchain(sass_version = "1.63.6")
-
 use_repo(sass, "sass_toolchains")
 
 register_toolchains("@sass_toolchains//:all")
