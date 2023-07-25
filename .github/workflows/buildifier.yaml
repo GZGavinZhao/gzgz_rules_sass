@@ -12,5 +12,6 @@ on:
 
 jobs:
   check:
+    runs-on: ubuntu-latest
     steps:
       - run: bazel run --enable_bzlmod //.github/workflows:buildifier.check
