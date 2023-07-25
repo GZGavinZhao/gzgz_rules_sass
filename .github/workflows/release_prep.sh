@@ -6,8 +6,8 @@ set -o errexit -o nounset -o pipefail
 # https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
 TAG=${GITHUB_REF_NAME}
 # The prefix is chosen to match what GitHub generates for source archives
-PREFIX="rules_sass-${TAG:1}"
-ARCHIVE="rules_sass-$TAG.tar.gz"
+PREFIX="gzgz_rules_sass-${TAG:1}"
+ARCHIVE="gzgz_rules_sass-$TAG.tar.gz"
 git archive --format=tar --prefix=${PREFIX}/ ${TAG} | gzip > $ARCHIVE
 SHA=$(shasum -a 256 $ARCHIVE | awk '{print $1}')
 
@@ -31,7 +31,7 @@ http_archive(
     name = "gzgz_rules_sass",
     sha256 = "${SHA}",
     strip_prefix = "${PREFIX}",
-    url = "https://github.com/GZGavinZhao/rules_sass/releases/download/${TAG}/${ARCHIVE}",
+    url = "https://github.com/GZGavinZhao/gzgz_rules_sass/releases/download/${TAG}/${ARCHIVE}",
 )
 EOF
 
