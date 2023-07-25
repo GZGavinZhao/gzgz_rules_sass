@@ -12,4 +12,5 @@ on:
 
 jobs:
   check:
-    run: bazel run --enable_bzlmod //.github/workflows:buildifier.check
+    steps:
+      - run: bazel run --enable_bzlmod //.github/workflows:buildifier.check

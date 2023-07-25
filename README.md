@@ -6,7 +6,8 @@ stylesheets. It has the exact same API as the official
 that `gzgz_rules_sass` wraps the [Dart Sass](https://github.com/sass/dart-sass)
 executable directly, while `rules_sass` calls Dart Sass through NodeJS and
 therefore is slower and pulls in more unnecessary dependencies, especially if
-your project runs on a different version of NodeJS.
+your project runs on a different version of NodeJS or if you project doesn't
+need NodeJS at all.
 
 This ruleset adopts the Toolchain and Platforms API and special care has been
 taken to make it RBE-compatible, but this is not thoroughly tested.
