@@ -19,6 +19,13 @@ cat << EOF
 
 \`\`\`starlark
 bazel_dep(name = "gzgz_rules_sass", version = "${TAG:1}")
+
+sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
+
+sass.toolchain(sass_version = "1.63.6") # Or any other version you like
+use_repo(sass, "sass_toolchains")
+
+register_toolchains("@sass_toolchains//:all")
 \`\`\`
 
 ## Using WORKSPACE
