@@ -13,12 +13,15 @@
 # limitations under the License.
 "Compile Sass files to CSS"
 
+load("@aspect_rules_js//js:providers.bzl", "JsInfo")
+
 _ALLOWED_SRC_FILE_EXTENSIONS = [".sass", ".scss", ".css", ".svg", ".png", ".gif", ".cur", ".jpg", ".webp"]
 
 SassInfo = provider(
     doc = "Collects files from sass_library for use in downstream sass_binary",
     fields = {
         "transitive_sources": "Sass sources for this target and its dependencies",
+        "load_paths": "additional load paths",
     },
 )
 
@@ -81,6 +84,10 @@ def _run_sass(ctx, input, css_output, map_output = None):
         args.add("--load-path=%s/" % prefix)
         for include_path in ctx.attr.include_paths:
             args.add("--load-path=%s/%s" % (prefix, include_path))
+
+    for dep in ctx.attr.deps:
+        for load_path in dep[SassInfo].load_paths:
+            args.add("--load-path=%s/" % load_path)
 
     # Last arguments are input and output paths
     # Note that the sourcemap is implicitly written to a path the same as the
@@ -308,4 +315,51 @@ multi_sass_binary = rule(
         ),
     },
     toolchains = ["//sass:toolchain_type"],
+)
+
+def _npm_sass_library_impl(ctx):
+    """
+    Library with npm dependencies
+
+    Rule that extracts Sass sources and its transitive dependencies from an npm
+    package. The extracted source files are provided with the `SassInfo` provider
+    so that they can be consumed directly as dependencies of other Sass libraries
+    or Sass binaries.
+
+    This rule is helpful when build targets rely on Sass files provided by an external
+    npm package. In those cases, one wouldn't want to list out all individual source
+    files of the npm package, but rather glob all needed Sass files from the npm package.
+    """
+
+    transitive_sources = []
+    load_paths = []
+
+    for dep in ctx.attr.deps:
+        npm_info = dep[JsInfo]
+
+        for package in npm_info.npm_package_store_infos.to_list():
+            transitive_sources.append(package.transitive_files)
+
+            load_paths.append(package.package_store_directory.path.removesuffix(package.package))
+
+    outputs = depset(transitive = transitive_sources)
+
+    return [
+        DefaultInfo(
+            files = outputs,
+            runfiles = ctx.runfiles(transitive_files = outputs),
+        ),
+        SassInfo(transitive_sources = outputs, load_paths = load_paths),
+    ]
+
+npm_sass_library = rule(
+    implementation = _npm_sass_library_impl,
+    attrs = {
+        "deps": attr.label_list(
+            allow_files = False,
+            mandatory = True,
+            providers = [JsInfo],
+            doc = "List of npm package targets for which direct and transitive Sass files are collected.",
+        ),
+    },
 )
