@@ -5,6 +5,7 @@ def _sass_toolchain_impl(ctx):
     toolchain_info = platform_common.ToolchainInfo(
         name = ctx.label.name,
         sass = ctx.attr.sass,
+        deps = ctx.attr.deps,
     )
     return [toolchain_info]
 
@@ -18,6 +19,7 @@ sass_toolchain = rule(
             allow_single_file = True,
             cfg = "exec",
         ),
+        "deps": attr.label(mandatory = True),
     },
     doc = """Defines a sass compiler/runtime toolchain.
 
