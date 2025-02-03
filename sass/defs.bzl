@@ -97,7 +97,7 @@ def _run_sass(ctx, input, css_output, map_output = None):
     sass = toolchain.sass
 
     ctx.actions.run(
-        inputs = _collect_transitive_sources([input], ctx.attr.deps),
+        inputs = depset(transitive = [_collect_transitive_sources([input], ctx.attr.deps), toolchain.deps.files]),
         outputs = [css_output, map_output] if map_output else [css_output],
         arguments = [args],
         executable = sass.files_to_run,
