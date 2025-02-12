@@ -69,7 +69,7 @@ load("@gzgz_rules_sass//sass:toolchain.bzl", "sass_toolchain")
 
 filegroup(
     name = "sass_deps",
-    srcs = ["src/dart", "src/sass.snapshot"],
+    srcs = glob(["**/*"]),
 )
 
 sass_toolchain(
