@@ -136,7 +136,7 @@
   "moduleExtensions": {
     "@@gzgz_rules_sass+//sass:extensions.bzl%sass": {
       "general": {
-        "bzlTransitiveDigest": "f8BJ2uqZF9Apjhb4tIME6INNK1PqzSV4mg3a33kFnRY=",
+        "bzlTransitiveDigest": "wnmAxPmynH3IPSlDEd+hH9tWyqYadI1tF2LMo4sMU3A=",
         "usagesDigest": "vDZkf0G05ucIl1miGbfgsrACypJruw7gD5WIj2BuHto=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
