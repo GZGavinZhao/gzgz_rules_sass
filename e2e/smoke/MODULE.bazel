@@ -7,7 +7,7 @@ local_path_override(
 )
 
 sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
-sass.toolchain(sass_version = "1.83.4")
+sass.toolchain(sass_version = "1.86.3")
 use_repo(sass, "sass_toolchains")
 
 register_toolchains("@sass_toolchains//:all")

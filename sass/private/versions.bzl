@@ -6,6 +6,210 @@ shasum -b -a 384 [downloaded file] | awk '{ print $1 }' | xxd -r -p | base64
 """
 
 SASS_VERSIONS = {
+    "1.86.3": {
+        "aarch32-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.3/dart-sass-1.86.3-linux-arm.tar.gz",
+            "checksum": "sha384-2cFEehFAZf0fEME37e1I9pIFeVuKLf84v5JopplRRTtVNnz8d4tUZZEz74laNjya",
+        },
+        "aarch64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.3/dart-sass-1.86.3-linux-arm64.tar.gz",
+            "checksum": "sha384-MZ0XCcnE7NWB4wn5Z5gpg19XmDe/Eg5Vl5fPj/AW2mMuoYsbIcTJ67Q1epluoeXW",
+        },
+        "i386-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.3/dart-sass-1.86.3-linux-ia32.tar.gz",
+            "checksum": "sha384-MIr/TjIT4qA3CV6HXil1LehRiw36l3N3ginT+zxenyrnxLdfYgIdG/3w4VRatxgV",
+        },
+        "x86_64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.3/dart-sass-1.86.3-linux-x64.tar.gz",
+            "checksum": "sha384-6zlz9BI8n9QJr5OwX/VJn22f9+WJ4Y7ZbVsS5Za8z8R8flasQ013yfoLI6rTiiCW",
+        },
+        "aarch64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.3/dart-sass-1.86.3-macos-arm64.tar.gz",
+            "checksum": "sha384-PN9nxtD63R49hInX4OfKne4ORqdPXLkOI23Q/Uy5a2eea0yIkVsVJJddUJ7xkMgP",
+        },
+        "x86_64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.3/dart-sass-1.86.3-macos-x64.tar.gz",
+            "checksum": "sha384-Lr9ZnZJduKtZ11FLCfAZrt0LzrIA9DIX5mXs1mQEnRawoZVs4+6JX/7v1m7G8fU1",
+        },
+        "i386-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.3/dart-sass-1.86.3-windows-ia32.zip",
+            "checksum": "sha384-/VnO4PALda7hI1l3OTMI7ldT3Yy2UKRqmJzYlCxMVKY8Q0pXssAVej+Z8zoFxNBp",
+        },
+        "x86_64-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.3/dart-sass-1.86.3-windows-x64.zip",
+            "checksum": "sha384-oBEX1PWGvpGNe06MJLynphOJrY4ayA5OZGZP2/AbnQljWQMv0iN7AhLb7j4eVKTd",
+        },
+    },
+    "1.86.2": {
+        "aarch32-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.2/dart-sass-1.86.2-linux-arm.tar.gz",
+            "checksum": "sha384-zT1BtRy0gufjkwY6tiJLUku8nGsm0jjUrDqh+Xr0vRvxtGLjheAclM4yNoQpD/Kn",
+        },
+        "aarch64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.2/dart-sass-1.86.2-linux-arm64.tar.gz",
+            "checksum": "sha384-92vB/XOfZ/6AzTq7b4hPcMK0PSSncHssunsaP+OzOi+49p9imENEBrzDGch0xHoU",
+        },
+        "i386-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.2/dart-sass-1.86.2-linux-ia32.tar.gz",
+            "checksum": "sha384-BAHP4+ahb8kzkuHuO5/R2d2rZJenOELeu2SyWBdQiWBTIlod/R+G5lVAaBvaRzO8",
+        },
+        "x86_64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.2/dart-sass-1.86.2-linux-x64.tar.gz",
+            "checksum": "sha384-NZLns5oa5l9m1NCiatysJMzz/cN7pKyGoAfjU/C6iusbWp7tGCo4Y0mDaMfyqA2F",
+        },
+        "aarch64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.2/dart-sass-1.86.2-macos-arm64.tar.gz",
+            "checksum": "sha384-d3Y9vaOkhMnzOZ+qrSTyELl1/WGxyCGjMxNSRWy0nRVjjiXzLQaUi8YDKCwCxNem",
+        },
+        "x86_64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.2/dart-sass-1.86.2-macos-x64.tar.gz",
+            "checksum": "sha384-yVn6+37/ctJ3jxMHFIg3uqmPGEKRAI0o4HqGN/y+VDiVcqLm9Aq+YwCPQMQwRahZ",
+        },
+        "i386-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.2/dart-sass-1.86.2-windows-ia32.zip",
+            "checksum": "sha384-2mSkZoLmdGH/b+Gu7R8YXnPxVK75IkQNyftlnaYP842oy77wMwnS4PtRmmTkkyAW",
+        },
+        "x86_64-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.2/dart-sass-1.86.2-windows-x64.zip",
+            "checksum": "sha384-dbbFRSaZWPDBAp3RdNNuKW5rTaeDRFFCub69kj2L+oE6xYMAUpiWNw3YV/kfUlRx",
+        },
+    },
+    "1.86.1": {
+        "aarch32-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.1/dart-sass-1.86.1-linux-arm.tar.gz",
+            "checksum": "sha384-jzWHYyQsylVQooA2T2TJaeK6Sk9dBgxYhWCmLtftfUC6NOpPQR5yHWG+vSYrlVs1",
+        },
+        "aarch64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.1/dart-sass-1.86.1-linux-arm64.tar.gz",
+            "checksum": "sha384-B1ef2992GZDByuJ6ymg6mjvFtUUmxxSxGNC3u5L678q87WC5F528JzdOHpxndcBy",
+        },
+        "i386-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.1/dart-sass-1.86.1-linux-ia32.tar.gz",
+            "checksum": "sha384-EMjPiJYg9GJSn/ntSBAdkJnT5MZ3EhIpf4YZSI3eNbrMpQgzNAmMrvHACsQ7sU6U",
+        },
+        "x86_64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.1/dart-sass-1.86.1-linux-x64.tar.gz",
+            "checksum": "sha384-NKaoEyjVU3wzCBinqdX8HVlE3bJ5WqhS8LmiKgm9Y/Pkvh74d0iDLflDQhGbhso+",
+        },
+        "aarch64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.1/dart-sass-1.86.1-macos-arm64.tar.gz",
+            "checksum": "sha384-o1UM6J0NVZuVNEU55BWbzJb6RO0ipnW/eQGuUJEw3jAb2ywk9wLZGDF6F+kjOTmx",
+        },
+        "x86_64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.1/dart-sass-1.86.1-macos-x64.tar.gz",
+            "checksum": "sha384-kq3pdFQhJ65CH9hnhgd21qE4a2R+WBlLaPyJQ0WYyHAJ+iEk5yKavrJGLaPBZS3H",
+        },
+        "i386-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.1/dart-sass-1.86.1-windows-ia32.zip",
+            "checksum": "sha384-N8XMER74dTGrf9rEo7g9hwuHFzVUkdUrWMVyrvKzEB8b5lLr0gEA5Ho5rZp6GHew",
+        },
+        "x86_64-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.1/dart-sass-1.86.1-windows-x64.zip",
+            "checksum": "sha384-yOZJbWsU8hS+nEwO2Usp//vjh+D5u2geXKbwHiwRG/dN6GsONdChkitZZnF6LK5I",
+        },
+    },
+    "1.86.0": {
+        "aarch32-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.0/dart-sass-1.86.0-linux-arm.tar.gz",
+            "checksum": "sha384-q/pa3DGBm76oIkw84fSBiGxvSSaffn4yT3jxIx5Nwz3PvDIt1WY2lTejvGED6g1Q",
+        },
+        "aarch64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.0/dart-sass-1.86.0-linux-arm64.tar.gz",
+            "checksum": "sha384-LuY8mn9TznX5e8/WmyR8cSYl9IThinAOr8AiMpsCDFm1aBOvbwy4H8ng/SQx7gwq",
+        },
+        "i386-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.0/dart-sass-1.86.0-linux-ia32.tar.gz",
+            "checksum": "sha384-y58BpVJLowGL9qOTVawJRAQ9L1wBwegJuEQh/2nvOyrIIFppK4mJujM0dYQQXmeU",
+        },
+        "x86_64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.0/dart-sass-1.86.0-linux-x64.tar.gz",
+            "checksum": "sha384-t24qvZ2JptPEgOyYkv0Bu0/UqluxQUtqXUSOdA7k53ovrfUrSxJdq9X/hprxo0pv",
+        },
+        "aarch64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.0/dart-sass-1.86.0-macos-arm64.tar.gz",
+            "checksum": "sha384-6Teg4mIq6YrsbDq4AU2dSQt2MEuQUTHwdBk401d35xkdSqNqw/6CymQcjJ9D9zBZ",
+        },
+        "x86_64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.0/dart-sass-1.86.0-macos-x64.tar.gz",
+            "checksum": "sha384-jalHE8DP0PCK8W0TL8An7u25IJ53tAGpbDiRAd5ASXL7bGzU3azZBNoS8rt3ve+V",
+        },
+        "i386-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.0/dart-sass-1.86.0-windows-ia32.zip",
+            "checksum": "sha384-bRL3bx+2T7kSScg0f6OtTenwPhu/wdU8jXObLRojq+3Rfa9IhcTJrUVCkPyh6dRX",
+        },
+        "x86_64-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.86.0/dart-sass-1.86.0-windows-x64.zip",
+            "checksum": "sha384-A7YwFIZpKPbv1PMI/Eu1A2rqfNPmrjLEXe+gUGU++tjbvpMRz2bsLiu/vHbBANaM",
+        },
+    },
+    "1.85.1": {
+        "aarch32-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.1/dart-sass-1.85.1-linux-arm.tar.gz",
+            "checksum": "sha384-Zzf31J+Cxuz1bFNN5UdAk4w/vzzjzsFtRmndnnl7xK6ScUqGI++u/48laNfLx12K",
+        },
+        "aarch64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.1/dart-sass-1.85.1-linux-arm64.tar.gz",
+            "checksum": "sha384-o8hQRYnI7Z+1gbJ95bq1co8fzKYgvszRW02CTUhTqCp3K3KBx+XfsAqQy1DLf9WC",
+        },
+        "i386-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.1/dart-sass-1.85.1-linux-ia32.tar.gz",
+            "checksum": "sha384-SUP3K/9Hxn5+8iBHDHhwBYQqeRK6OlHdcUgqYMJegasSatQ9ckj5h0lLOIh8Kgm4",
+        },
+        "x86_64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.1/dart-sass-1.85.1-linux-x64.tar.gz",
+            "checksum": "sha384-AEh8Inx2j5naaU51IRd3B4IvhU7fWc9YRjP3xbLyVaniZS12fXypog1kFYqKkdKH",
+        },
+        "aarch64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.1/dart-sass-1.85.1-macos-arm64.tar.gz",
+            "checksum": "sha384-fOpY3ksDoACOsr0pvu0CVeHx6xRZ086Fbr1Tu6cEXQa9gjodHyHr8hv+3tvjx5Mg",
+        },
+        "x86_64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.1/dart-sass-1.85.1-macos-x64.tar.gz",
+            "checksum": "sha384-UY3nPlSmGZsd/xJEdcNirGS/LRgh33FdTKr00u83g0T2+siBDiajocKwKBC+lsGN",
+        },
+        "i386-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.1/dart-sass-1.85.1-windows-ia32.zip",
+            "checksum": "sha384-6U/hlvtwu27bF3tuaIQa6wHY6BigDBGN1glS4FXIld+n79BWFl/BFv4WM4jGIIDG",
+        },
+        "x86_64-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.1/dart-sass-1.85.1-windows-x64.zip",
+            "checksum": "sha384-W8uWV3mcoAPWLtgb7Kk7cCAmb1/1SVvQXMO09QCdCjQyvhabootTuVSyFCVc5glk",
+        },
+    },
+    "1.85.0": {
+        "aarch32-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.0/dart-sass-1.85.0-linux-arm.tar.gz",
+            "checksum": "sha384-c2Luw/9B7KolWt5k7XaEkL7M3ouGucSrmlvCpRa8YSb6s4bbdxUnXGVvV5VFsnhv",
+        },
+        "aarch64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.0/dart-sass-1.85.0-linux-arm64.tar.gz",
+            "checksum": "sha384-PplgZMazighF3kg7Ut5vqy2Ep+IOc7cGN+1xx1pnP4s0isZy8U3nrfFXXP+H1roa",
+        },
+        "i386-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.0/dart-sass-1.85.0-linux-ia32.tar.gz",
+            "checksum": "sha384-buR9JpwDE8NaMS2XJkqVItNRMLjgDtLdv20/rXWlHXIjisa+E/t1JL5xdCvzmSlt",
+        },
+        "x86_64-unknown-linux": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.0/dart-sass-1.85.0-linux-x64.tar.gz",
+            "checksum": "sha384-bTiqnf6FgnypOTLT0FwwC00mddUjCBPOO9LzCfYIot+ijhcm45h4yeH4y0EVd97X",
+        },
+        "aarch64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.0/dart-sass-1.85.0-macos-arm64.tar.gz",
+            "checksum": "sha384-3Ck0Pj/wkWlz4gDHAd0K9rHYaKmjaxiDZMY/trCfMJHMLjg25seTE9PaZfK6EAhX",
+        },
+        "x86_64-apple-darwin": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.0/dart-sass-1.85.0-macos-x64.tar.gz",
+            "checksum": "sha384-K+Oz12nxBH94KGa9pN5CUmH6fc8TH//za4N2mei3q4oGm+hf8ZkKyAinkCuqqokv",
+        },
+        "i386-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.0/dart-sass-1.85.0-windows-ia32.zip",
+            "checksum": "sha384-D1vUpjvgSkB2O+uTxLFRssdfd3Rg1DgOcmezrND+TpL7SRtQsQNX7wOt+LQe+TT6",
+        },
+        "x86_64-pc-windows": {
+            "url": "https://github.com/sass/dart-sass/releases/download/1.85.0/dart-sass-1.85.0-windows-x64.zip",
+            "checksum": "sha384-W8esD5STzWtJ4oT4GGrGqCX/Jxl81pA5tIy4F3ovQd/Nz1srYwu7LvhyAwWfMivl",
+        },
+    },
     "1.83.4": {
         "aarch32-unknown-linux": {
             "url": "https://github.com/sass/dart-sass/releases/download/1.83.4/dart-sass-1.83.4-linux-arm.tar.gz",

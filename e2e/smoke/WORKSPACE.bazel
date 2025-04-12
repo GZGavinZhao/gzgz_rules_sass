@@ -20,5 +20,5 @@ gzgz_rules_sass_dependencies()
 
 sass_register_toolchains(
     name = "dart_sass",
-    sass_version = "1.83.4",  # Or any other version you like
+    sass_version = "1.86.3",  # Or any other version you like
 )
