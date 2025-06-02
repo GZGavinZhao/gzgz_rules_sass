@@ -1,0 +1,21 @@
+module(name = "submodule")
+
+bazel_dep(name = "bazel_skylib", version = "1.3.0")
+
+bazel_dep(name = "gzgz_rules_sass", version = "1.0.0")
+
+# Uncommenting this will result in the following error on Bazel 6.2.0:
+# > ERROR: Error computing the main repository mapping: The MODULE.bazel file of submodule@_
+#          declares overrides
+# Using a local_path_override here would be more correct and would allow running the targets in
+# this module from inside of it. Bazel versions after 6.2.0 allow nested overrides correctly.
+# local_path_override(
+#     module_name = "gzgz_rules_sass",
+#     path = "../../..",
+# )
+
+sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
+sass.toolchain(sass_version = "1.86.3")
+use_repo(sass, "sass_toolchains")
+
+register_toolchains("@sass_toolchains//:all")

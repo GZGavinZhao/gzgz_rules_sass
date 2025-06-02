@@ -11,5 +11,6 @@ build_test(
         "//demo:demo",
         "//imports_css:imports_css",
         "//hello_world:hello_world",
+        "@submodule//nested",
     ],
 )
