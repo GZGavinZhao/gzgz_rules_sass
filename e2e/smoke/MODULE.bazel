@@ -1,5 +1,4 @@
 bazel_dep(name = "bazel_skylib", version = "1.3.0")
-
 bazel_dep(name = "gzgz_rules_sass", version = "1.0.0")
 local_path_override(
     module_name = "gzgz_rules_sass",
