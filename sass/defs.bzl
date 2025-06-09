@@ -79,11 +79,6 @@ def _run_sass(ctx, input, css_output, map_output = None):
     # Sources for compilation may exist in the source tree, in bazel-bin, or bazel-genfiles.
     for prefix in [".", ctx.var["BINDIR"], ctx.var["GENDIR"]]:
         args.add("--load-path=%s/" % prefix)
-
-        # Include the workspace root if the rule is referenced in an external workspace. In this
-        # case, sources and outputs will be placed within the `external` folder.
-        if ctx.label.workspace_root != "":
-            args.add("--load-path=%s/%s" % (prefix, ctx.label.workspace_root))
         for include_path in ctx.attr.include_paths:
             args.add("--load-path=%s/%s" % (prefix, include_path))
 
