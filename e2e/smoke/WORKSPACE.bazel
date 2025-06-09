@@ -4,12 +4,6 @@ local_repository(
     path = "../..",
 )
 
-# Import the submodule.
-local_repository(
-    name = "submodule",
-    path = "./submodule/",
-)
-
 #---SNIP--- Below here is re-used in the workspace snippet published on releases
 
 ######################

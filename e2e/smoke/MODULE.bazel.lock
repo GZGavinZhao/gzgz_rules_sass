@@ -138,7 +138,7 @@
     "@@gzgz_rules_sass+//sass:extensions.bzl%sass": {
       "general": {
         "bzlTransitiveDigest": "fNqVIutA6zvTy2KqYcU9uNLfEuQ0s2yFW/ciX+Ia8yo=",
-        "usagesDigest": "vtWL3XLvQ0cEanYgJOTBHaprjg74F2zUH7ZA3chbx0I=",
+        "usagesDigest": "WxWaJswoDwvd+RMfsDqEz4VQi/GFHranIVzWMcIjHY4=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
