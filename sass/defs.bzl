@@ -13,8 +13,6 @@
 # limitations under the License.
 "Compile Sass files to CSS"
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
-
 _ALLOWED_SRC_FILE_EXTENSIONS = [".sass", ".scss", ".css", ".svg", ".png", ".gif", ".cur", ".jpg", ".webp"]
 
 SassInfo = provider(
@@ -80,14 +78,14 @@ def _run_sass(ctx, input, css_output, map_output = None):
 
     # Sources for compilation may exist in the source tree, in bazel-bin, or bazel-genfiles.
     for prefix in [".", ctx.var["BINDIR"], ctx.var["GENDIR"]]:
-        args.add("--load-path=%s" % prefix)
+        args.add("--load-path=%s/" % prefix)
 
         # Include the workspace root if the rule is referenced in an external workspace. In this
         # case, sources and outputs will be placed within the `external` folder.
         if ctx.label.workspace_root != "":
-            args.add("--load-path=%s" % paths.join(prefix, ctx.label.workspace_root))
+            args.add("--load-path=%s/%s" % (prefix, ctx.label.workspace_root))
         for include_path in ctx.attr.include_paths:
-            args.add("--load-path=%s" % paths.join(prefix, include_path))
+            args.add("--load-path=%s/%s" % (prefix, include_path))
 
     # Last arguments are input and output paths
     # Note that the sourcemap is implicitly written to a path the same as the
@@ -270,7 +268,7 @@ def _multi_sass_binary_impl(ctx):
     if not ctx.attr.sourcemap:
         args.add("--no-source-map")
 
-    args.add(root_dir + ":" + paths.join(ctx.bin_dir.path, root_dir))
+    args.add(root_dir + ":" + ctx.bin_dir.path + "/" + root_dir)
 
     # TODO: not yet doable. See the comment in _run_sass.
     # args.use_param_file("@%s", use_always = True)
