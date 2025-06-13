@@ -13,6 +13,8 @@
 # limitations under the License.
 "Compile Sass files to CSS"
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
+
 _ALLOWED_SRC_FILE_EXTENSIONS = [".sass", ".scss", ".css", ".svg", ".png", ".gif", ".cur", ".jpg", ".webp"]
 
 SassInfo = provider(
@@ -78,14 +80,18 @@ def _run_sass(ctx, input, css_output, map_output = None):
 
     # Sources for compilation may exist in the source tree, in bazel-bin, or bazel-genfiles.
     for prefix in [".", ctx.var["BINDIR"], ctx.var["GENDIR"]]:
-        args.add("--load-path=%s/" % prefix)
-
         # Include the workspace root if the rule is referenced in an external workspace. In this
-        # case, sources and outputs will be placed within the `external` folder.
+        # case, sources and outputs will be placed within the `external` folder. Otherwise, load
+        # from the `prefix` directory directly.
         if ctx.label.workspace_root != "":
-            args.add("--load-path=%s/%s" % (prefix, ctx.label.workspace_root))
+            prefix = paths.join(prefix, ctx.label.workspace_root)
+
+        # Sass load_path arguments are evaluated in order and the first hit wins. Prioritize paths
+        # that are explicitly provided as a rule attribute by loading them first.
         for include_path in ctx.attr.include_paths:
-            args.add("--load-path=%s/%s" % (prefix, include_path))
+            args.add("--load-path=%s" % paths.join(prefix, include_path))
+
+        args.add("--load-path=%s" % prefix)
 
     # Last arguments are input and output paths
     # Note that the sourcemap is implicitly written to a path the same as the
