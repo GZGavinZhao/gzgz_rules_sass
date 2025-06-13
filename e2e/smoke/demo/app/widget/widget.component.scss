@@ -1,12 +1,11 @@
-@import 'styles';
+@use "styles";
 
 h1 {
-  color: $example-blue;
-  font-family: $default-font-stack;
+  color: styles.$example-blue;
+  font-family: styles.$default-font-stack;
 }
 
-
 h2 {
-  color: $example-green;
-  font-family: $modern-font-stack;
+  color: styles.$example-green;
+  font-family: styles.$modern-font-stack;
 }

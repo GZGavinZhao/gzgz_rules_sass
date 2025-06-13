@@ -1,6 +1,6 @@
-@import 'styles';
+@use "styles";
 
 h1 {
-  color: $example-red;
-  font-family: $modern-font-stack;
+  color: styles.$example-red;
+  font-family: styles.$modern-font-stack;
 }
