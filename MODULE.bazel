@@ -2,7 +2,7 @@
 
 module(
     name = "gzgz_rules_sass",
-    version = "1.0.2",
+    version = "1.0.3",
     compatibility_level = 1,
 )
 
