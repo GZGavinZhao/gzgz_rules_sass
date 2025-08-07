@@ -285,7 +285,7 @@ def _multi_sass_binary_impl(ctx):
 
     if inputs:
         ctx.actions.run(
-            inputs = inputs,
+            inputs = depset(inputs, transitive = [toolchain.deps.files]),
             outputs = outputs,
             arguments = [args],
             executable = sass.files_to_run,
