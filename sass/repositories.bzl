@@ -75,7 +75,7 @@ filegroup(
 sass_toolchain(
     name = "sass_toolchain",
     sass = select({
-        "@bazel_tools//src/conditions:host_windows": "sass.bat",
+        "@platforms//os:windows": "sass.bat",
         "//conditions:default": "sass",
     }),
     deps = ":sass_deps",
