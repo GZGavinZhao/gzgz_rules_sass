@@ -72,12 +72,14 @@ filegroup(
     srcs = glob(["**/*"]),
 )
 
+filegroup(
+    name = "sass_binary",
+    srcs = glob(["sass", "sass.bat"], allow_empty=True),
+)
+
 sass_toolchain(
     name = "sass_toolchain",
-    sass = select({
-        "@platforms//os:windows": "sass.bat",
-        "//conditions:default": "sass",
-    }),
+    sass = ":sass_binary",
     deps = ":sass_deps",
 )
 """
