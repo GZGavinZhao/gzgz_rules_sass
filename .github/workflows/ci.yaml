@@ -20,7 +20,7 @@ jobs:
     uses: bazel-contrib/.github/.github/workflows/bazel.yaml@v7.4.0
     with:
       bazel_versions : |
-        ["8.x", "9.x"]
+        ["7.x", "8.0.0", "8.x", "9.x"]
       folders: |
         [
           ".",
