@@ -12,16 +12,27 @@ need NodeJS at all.
 This ruleset adopts the Toolchain and Platforms API and special care has been
 taken to make it RBE-compatible, but this is not thoroughly tested.
 
+## Compatibility
+
+| Bazel version | Bzlmod | WORKSPACE |
+| ------------- | ------ | --------- |
+| 7.x           | ✅     | ✅        |
+| 8.x           | ✅     | ✅        |
+| 9.x           | ✅     | ❌        |
+
+Bazel 9 removed the legacy WORKSPACE system. Use Bzlmod on Bazel 9. The
+WORKSPACE installation path only works on Bazel 7 and Bazel 8.
+
 ## Installation
 
-### bzlmod
+### Bzlmod
 
 ```starlark
-bazel_dep(name = "gzgz_rules_sass", version = "1.0.0")
+bazel_dep(name = "gzgz_rules_sass", version = "1.0.4")
 
 sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
 
-sass.toolchain(sass_version = "1.63.6")
+sass.toolchain(sass_version = "1.98.0")
 use_repo(sass, "sass_toolchains")
 
 register_toolchains("@sass_toolchains//:all")
@@ -39,7 +50,7 @@ will differentiate it from the default Sass toolchain:
 sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
 sass.toolchain(
     name = "dart_sass",
-    sass_version = "1.63.6",
+    sass_version = "1.98.0",
 )
 use_repo(sass, "dart_sass_toolchains")
 
@@ -48,17 +59,28 @@ register_toolchains("@dart_sass_toolchains//:all")
 
 ### WORKSPACE
 
+Only for Bazel 7 and Bazel 8. Bazel 9 removed WORKSPACE support.
+
 From the release you wish to use:
 <https://github.com/GZGavinZhao/gzgz_rules_sass/releases>
 copy the WORKSPACE snippet into your `WORKSPACE` file.
 
-To use a commit rather than a release, you can point at any SHA of the repo.
+### Using a commit
 
-For example to use commit `abc123`:
+To use a commit rather than a release, point at a SHA with `archive_override`
+in `MODULE.bazel`.
 
-1. Replace `url = "https://github.com/GZGavinZhao/gzgz_rules_sass/releases/download/v0.1.0/gzgz_rules_sass-v0.1.0.tar.gz"` with a GitHub-provided source archive like `url = "https://github.com/GZGavinZhao/gzgz_rules_sass/archive/abc123.tar.gz"`
-1. Replace `strip_prefix = "gzgz_rules_sass-0.1.0"` with `strip_prefix = "gzgz_rules_sass-abc123"`
-1. Update the `sha256`. The easiest way to do this is to comment out the line, then Bazel will
-   print a message with the correct value. Note that GitHub source archives don't have a strong
-   guarantee on the sha256 stability, see
-   <https://github.blog/2023-02-21-update-on-the-future-stability-of-source-code-archives-and-hashes/>
+For example, to use commit `abc123`:
+
+```starlark
+archive_override(
+    module_name = "gzgz_rules_sass",
+    url = "https://github.com/GZGavinZhao/gzgz_rules_sass/archive/abc123.tar.gz",
+    strip_prefix = "gzgz_rules_sass-abc123",
+    # The easiest way to set this is to comment out this line, then Bazel will
+    # print a message with the correct value. Note that GitHub source archives
+    # don't have a strong guarantee on the sha256 stability, see
+    # <https://github.blog/2023-02-21-update-on-the-future-stability-of-source-code-archives-and-hashes/>
+    integrity = "...",
+)
+```
