@@ -32,8 +32,9 @@ By default, the Sass toolchain name is `@sass_toolchains`, so the
 dependencies that also used the default name.
 
 However, if you'd like to use a specific version **only** in your project,
-then you can explicitly set a name when registering Sass toolchain, which 
+then you can explicitly set a name when registering Sass toolchain, which
 will differentiate it from the default Sass toolchain:
+
 ```starlark
 sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
 sass.toolchain(

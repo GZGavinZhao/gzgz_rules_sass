@@ -44,7 +44,7 @@ def name_to_platform(name):
         return "i386-pc-windows"
     else:
         return None
-        # raise ValueError(f"I don't know what plaform {name} belongs to!")
+        # raise ValueError(f"I don't know what platform {name} belongs to!")
 
 
 def format_starlark(value, indent=0):

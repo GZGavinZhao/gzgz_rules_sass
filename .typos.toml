@@ -1,0 +1,11 @@
+# See https://github.com/crate-ci/typos?tab=readme-ov-file#false-positives how to ignore
+
+[files]
+extend-exclude = [
+    "MODULE.bazel.lock",
+    "e2e/smoke/MODULE.bazel.lock",
+    "docs/rules.md",
+    "sass/private/new.json",
+    "sass/private/versions.bzl",
+    "sass/private/versions.json",
+]
