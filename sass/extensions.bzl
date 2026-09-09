@@ -22,6 +22,22 @@ Overriding the default is only permitted in the root module.
     "sass_version": attr.string(doc = "Explicit version of sass.", mandatory = True),
 })
 
+def _version_key(version):
+    """Return a sort key for a Dart Sass version string.
+
+    Compares numeric components first, then sorts prereleases before the
+    matching release. This avoids lexicographic ordering bugs such as
+    ``"1.9.0"`` sorting above ``"1.86.0"``.
+    """
+    parts = version.split("-", 1)
+    numbers = []
+    for component in parts[0].split("."):
+        numbers.append(int(component))
+    for _ in range(3 - len(numbers)):
+        numbers.append(0)
+    is_release = len(parts) == 1
+    return (numbers, is_release)
+
 def _toolchain_extension(module_ctx):
     registrations = {}
     for mod in module_ctx.modules:
@@ -36,8 +52,7 @@ def _toolchain_extension(module_ctx):
             registrations[toolchain.name].append(toolchain.sass_version)
     for name, versions in registrations.items():
         if len(versions) > 1:
-            # TODO: should be semver-aware, using MVS
-            selected = sorted(versions, reverse = True)[0]
+            selected = sorted(versions, key = _version_key, reverse = True)[0]
 
             # buildifier: disable=print
             print("NOTE: sass toolchain {} has multiple versions {}, selected {}".format(name, versions, selected))
@@ -49,6 +64,10 @@ def _toolchain_extension(module_ctx):
             sass_version = selected,
             register = False,
         )
+
+    return module_ctx.extension_metadata(
+        reproducible = True,
+    )
 
 sass = module_extension(
     implementation = _toolchain_extension,
