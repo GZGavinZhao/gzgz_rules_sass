@@ -2,27 +2,37 @@
 
 set -o errexit -o nounset -o pipefail
 
-# Set by GH actions, see
-# https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
-TAG=${GITHUB_REF_NAME}
+# Argument provided by reusable workflow caller, see
+# https://github.com/bazel-contrib/.github/blob/d197a6427c5435ac22e56e33340dff912bc9334e/.github/workflows/release_ruleset.yaml#L72
+TAG=$1
 # The prefix is chosen to match what GitHub generates for source archives
+# This guarantees that users can easily switch from a released artifact to a source archive
+# with minimal differences in their code (e.g. strip_prefix remains the same)
 PREFIX="gzgz_rules_sass-${TAG:1}"
 ARCHIVE="gzgz_rules_sass-$TAG.tar.gz"
+
+# NB: configuration for 'git archive' is in /.gitattributes
 git archive --format=tar --prefix=${PREFIX}/ ${TAG} | gzip > $ARCHIVE
 SHA=$(shasum -a 256 $ARCHIVE | awk '{print $1}')
 
-cat << EOF
-## Using Bzlmod with Bazel 6
+# Add generated API docs to the release, see https://github.com/bazelbuild/bazel-central-registry/issues/5593
+docs="$(mktemp -d)"; targets="$(mktemp)"
+bazel --output_base="$docs" query --output=label --output_file="$targets" 'kind("starlark_doc_extract rule", //...)'
+bazel --output_base="$docs" build --target_pattern_file="$targets"
+tar --create --auto-compress \
+    --directory "$(bazel --output_base="$docs" info bazel-bin)" \
+    --file "$GITHUB_WORKSPACE/${ARCHIVE%.tar.gz}.docs.tar.gz" .
 
-1. Enable with \`common --enable_bzlmod\` in \`.bazelrc\`.
-2. Add to your \`MODULE.bazel\` file:
+cat << EOF
+## Bzlmod
+
+Add to your \`MODULE.bazel\` file:
 
 \`\`\`starlark
 bazel_dep(name = "gzgz_rules_sass", version = "${TAG:1}")
 
 sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
-
-sass.toolchain(sass_version = "1.63.6") # Or any other version you like
+sass.toolchain(sass_version = "1.86.3") # Or any other version you like
 use_repo(sass, "sass_toolchains")
 
 register_toolchains("@sass_toolchains//:all")
@@ -30,7 +40,9 @@ register_toolchains("@sass_toolchains//:all")
 
 ## Using WORKSPACE
 
-Paste this snippet into your `WORKSPACE.bazel` file:
+Only needed for Bazel 7 and 8. Bazel 9 removed WORKSPACE support.
+
+Paste this snippet into your \`WORKSPACE.bazel\` file:
 
 \`\`\`starlark
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -43,4 +55,4 @@ http_archive(
 EOF
 
 awk 'f;/--SNIP--/{f=1}' e2e/smoke/WORKSPACE.bazel
-echo "\`\`\`" 
+echo "\`\`\`"
