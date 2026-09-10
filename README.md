@@ -28,7 +28,7 @@ WORKSPACE installation path only works on Bazel 7 and Bazel 8.
 ### Bzlmod
 
 ```starlark
-bazel_dep(name = "gzgz_rules_sass", version = "1.1.0")
+bazel_dep(name = "gzgz_rules_sass", version = "1.1.1")
 
 sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
 
