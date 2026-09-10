@@ -4,7 +4,7 @@ module(
     name = "gzgz_rules_sass",
 
     # NOTE:
-    # version = "",
+    version = "",
     #
     # Always leave version unset or set to "" (the default). The default value
     # can prevent issues when the module is used via non-registry overrides
@@ -18,7 +18,7 @@ module(
     # https://bazelbuild.slack.com/archives/CA31HN1T3/p1750406404452179
 
     # NOTE:
-    # compatibility_level = 0,
+    compatibility_level = 1,
     #
     # Bumping compatibility_level too frequently is discouraged because it's
     # very disruptive: as soon as a module is requested at two different
